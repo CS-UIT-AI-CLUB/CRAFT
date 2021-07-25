@@ -113,7 +113,7 @@ if __name__ == '__main__':
     
     net = CRAFT()
 
-    net.load_state_dict(copyStateDict(torch.load('/content/drive/MyDrive/CRAFT-Reimplementation/pretrain/Syndata.pth')))
+    net.load_state_dict(copyStateDict(torch.load('/content/drive/MyDrive/CRAFT/pretrain/Syndata.pth')))
     
     net = net.cuda()
 
@@ -122,7 +122,7 @@ if __name__ == '__main__':
     net = torch.nn.DataParallel(net,device_ids=[0]).cuda()
     cudnn.benchmark = True
     net.train()
-    realdata = ICDAR2015(net, '/content/drive/MyDrive/AIclub_task/data_trial', target_size=768)
+    realdata = ICDAR2015(net, '/content/drive/MyDrive/train', target_size=768)
     real_data_loader = torch.utils.data.DataLoader(
         realdata,
         batch_size=2,
@@ -197,9 +197,9 @@ if __name__ == '__main__':
 
         print('Saving state, iter:', epoch)
         torch.save(net.module.state_dict(),
-                   '/content/drive/MyDrive/CRAFT-Reimplementation/results/CRAFT_clr_' + repr(epoch) + '.pth')
+                   '/content/drive/MyDrive/CRAFT/results/CRAFT_clr_' + repr(epoch) + '.pth')
         if epoch % 20 == 0:
-            test('/content/drive/MyDrive/CRAFT-Reimplementation/results/CRAFT_clr_' + repr(epoch) + '.pth')
+            test('/content/drive/MyDrive/CRAFT/results/CRAFT_clr_' + repr(epoch) + '.pth')
         #test('/data/CRAFT-pytorch/craft_mlt_25k.pth')
             getresult()
         

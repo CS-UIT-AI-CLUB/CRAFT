@@ -58,7 +58,7 @@ args = parser.parse_args()
 
 
 """ For test images in a folder """
-image_list, _, _ = file_utils.get_files('/content/drive/MyDrive/Aicity_khdl/Data/test')
+image_list, _, _ = file_utils.get_files('/content/drive/MyDrive/test/images')
 
 result_folder = '/content/drive/MyDrive/CRAFT-Reimplementation/tested_image'
 if not os.path.isdir(result_folder):
@@ -144,5 +144,5 @@ def test(modelpara):
 
     print("elapsed time : {}s".format(time.time() - t))
 
-# if __name__ == '__main__':
-#     test('/content/drive/MyDrive/CRAFT-Reimplementation/results/CRAFT_clr_242.pth')
+if __name__ == '__main__':
+    test('/content/drive/MyDrive/CRAFT/results/CRAFT_clr_10.pth')

@@ -595,7 +595,6 @@ class ICDAR2015(craft_base_dataset):
         bboxes = []
         words = []
         for line in lines:
-            print(gt_path)
             ori_box = line.strip().encode('utf-8').decode('utf-8-sig').split(',')
             box = [int(ori_box[j]) for j in range(8)]
             word = ori_box[8:]
