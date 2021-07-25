@@ -106,12 +106,12 @@ def random_crop(imgs, img_size, character_bboxes):
         crop_w = sample_bboxes[1, 0] if tw < sample_bboxes[1, 0] - j else tw
     else:
         ### train for IC15 dataset####
-        # i = random.randint(0, h - th)
-        # j = random.randint(0, w - tw)
+        i = random.randint(0, h - th)
+        j = random.randint(0, w - tw)
 
         #### train for MLT dataset ###
-        i, j = 0, 0
-        crop_h, crop_w = h + 1, w + 1  # make the crop_h, crop_w > tw, th
+        #i, j = 0, 0
+        #crop_h, crop_w = h + 1, w + 1  # make the crop_h, crop_w > tw, th
 
     for idx in range(len(imgs)):
         # crop_h = sample_bboxes[1, 1] if th < sample_bboxes[1, 1] else th
@@ -260,7 +260,7 @@ class craft_base_dataset(data.Dataset):
                 ori = np.matmul(I, tmp.transpose(1, 0)).transpose(1, 0)
                 bboxes[j] = ori[:, :2]
         except Exception as e:
-            print(e, gt_path)
+            print(e)#print(e, gt_path)
 
 #         for j in range(len(bboxes)):
 #             ones = np.ones((4, 1))
@@ -595,16 +595,20 @@ class ICDAR2015(craft_base_dataset):
         bboxes = []
         words = []
         for line in lines:
+            print(gt_path)
             ori_box = line.strip().encode('utf-8').decode('utf-8-sig').split(',')
             box = [int(ori_box[j]) for j in range(8)]
             word = ori_box[8:]
             word = ','.join(word)
-            box = np.array(box, np.int32).reshape(4, 2)
+            box = np.array(box, np.int64).reshape(4, 2)
             if word == '###':
                 words.append('###')
                 bboxes.append(box)
                 continue
-            area, p0, p3, p2, p1, _, _ = mep(box)
+            try :
+                area, p0, p3, p2, p1, _, _ = mep(box)
+            except Exception as e:
+                print(gt_path)
 
             bbox = np.array([p0, p1, p2, p3])
             distance = 10000000

@@ -24,7 +24,7 @@ def antipodal_pairs(convex_polygon):
     n = len(convex_polygon)
     p1, p2 = convex_polygon[0], convex_polygon[1]
 
-    t, d_max = None, 0
+    t, d_max = 0, 0
     for p in range(1, n):
         d = distance(p1, p2, convex_polygon[p])
         if d > d_max:
