@@ -145,4 +145,4 @@ def test(modelpara):
     print("elapsed time : {}s".format(time.time() - t))
 
 if __name__ == '__main__':
-    test('/content/drive/MyDrive/CRAFT/results/CRAFT_clr_1.pth')
+    test('/content/drive/MyDrive/CRAFT/results/CRAFT_clr_18.pth')
