@@ -113,7 +113,7 @@ if __name__ == '__main__':
     
     net = CRAFT()
 
-    net.load_state_dict(copyStateDict(torch.load('/content/drive/MyDrive/CRAFT/pretrain/Syndata.pth')))
+    net.load_state_dict(copyStateDict(torch.load('/content/drive/MyDrive/CRAFT/pretrain/91.pth')))
     
     net = net.cuda()
 
@@ -198,10 +198,10 @@ if __name__ == '__main__':
         print('Saving state, iter:', epoch)
         torch.save(net.module.state_dict(),
                    '/content/drive/MyDrive/CRAFT/results/CRAFT_clr_' + repr(epoch) + '.pth')
-        if epoch % 20 == 0:
-            test('/content/drive/MyDrive/CRAFT/results/CRAFT_clr_' + repr(epoch) + '.pth')
-        #test('/data/CRAFT-pytorch/craft_mlt_25k.pth')
-            getresult()
+        # if epoch % 20 == 0:
+        #     test('/content/drive/MyDrive/CRAFT/results/CRAFT_clr_' + repr(epoch) + '.pth')
+        # #test('/data/CRAFT-pytorch/craft_mlt_25k.pth')
+        #     getresult()
         
 
 

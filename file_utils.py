@@ -3,7 +3,7 @@ import os
 import numpy as np
 import cv2
 import imgproc
-im
+
 
 # borrowed from https://github.com/lengstrom/fast-style-transfer/blob/master/src/utils.py
 def get_files(img_dir):
@@ -31,7 +31,7 @@ def list_files(in_path):
     # gt_files.sort()
     return img_files, mask_files, gt_files
 
-def saveResult(img_file, img, boxes, dirname='./result', verticals=None, texts=None):
+def saveResult(img_file, img, boxes, dirname='./result/', verticals=None, texts=None):
         """ save text detection result one by one
         Args:
             img_file (str): image file name
